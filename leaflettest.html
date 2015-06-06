@@ -1,27 +1,95 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <title>Ottawa Riverkeeper</title>
      <!-- Load Leaflet from CDN-->
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="js/geocoding.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
 
+    </script>
     <!-- we encourage you to replace 'latest' with a hardcode version number (like '1.0.0-rc.7') in production applications -->
     <script src="http://cdn.jsdelivr.net/leaflet.esri/latest/esri-leaflet.js"></script>
 
     <style>
-      html, body,  #map {
+      html, body {
         width : 100%;
         height : 100%;
+      }
+      #map {
+          width: 100%;
+          height: 600px;
+      }
+      .main-form {
+
+
+      }
+      .check-group {
+          display: inline-block;
       }
     </style>
   </head>
   <body>
+      <form action="" class="main-form">
+          <input id="postal-code" type="text" name="postalcode"><br/>
+          <button type="button" onclick="lookupPostal();">
+              Lookup postal code
+          </button>
+      </form>
     <div id="map"></div>
     <script>
-      var map = L.map('map').setView([45.4214, -75.6919], 10);
+    lat=46.51805180290592,  lng=-76.92626953125
+      var map = L.map('map').setView([46.52, -77], 7); // was [45.4214, -75.6919], 7);
+      var marker = null;
+      L.esri.basemapLayer("Topographic").addTo(map);
+      feature = L.esri.featureLayer("http://services3.arcgis.com/3A9PBYcAJK4G2Muz/arcgis/rest/services/Ottawa_Watershed_Boundaries/FeatureServer/0");
+      feature.on('click', function(e) {
+              var popLocation= e.latlng;
 
-      L.esri.basemapLayer("Gray").addTo(map);
-      L.esri.featureLayer("http://services3.arcgis.com/3A9PBYcAJK4G2Muz/arcgis/rest/services/Ottawa_Watershed_Boundaries/FeatureServer/0").addTo(map);
+  			  console.log(e.latlng);
+              if (marker == null) {
+                  marker = L.marker(popLocation).addTo(map);
+                  marker.bindPopup($("#map-form").html()).openPopup();
+                }
+                else {
+                    marker.setLatLng(popLocation);
+                    marker.bindPopup($("#map-form").html()).openPopup();
+                }
+          });
+      feature.addTo(map);
     </script>
+
+    <div id="map-form" style="display: none;">
+        <form >
+            <big>
+                <b>
+                    Activies
+                </b>
+            </big>
+            <br/>
+            <div class="check-group">
+                <input type="checkbox" name="use" value="swim"> swim<br/>
+                <input type="checkbox" name="use" value="sail"> sail<br/>
+                <input type="checkbox" name="use" value="paddle"> paddle<br/>
+                <input type="checkbox" name="use" value="fish"> fish<br/>
+                <input type="checkbox" name="use" value="motorboat"> motorboat<br/>
+                <input type="checkbox" name="use" value="scuba"> scuba<br/>
+                <input type="checkbox" name="use" value="explore"> explore/wade<br/>
+            </div>
+            <div class="check-group">
+                <input type="checkbox" name="use" value="camping"> camping<br/>
+                <input type="checkbox" name="use" value="rowing"> rowing<br/>
+                <input type="checkbox" name="use" value="raft"> rafting<br/>
+                <input type="checkbox" name="use" value="bike"> biking<br/>
+                <input type="checkbox" name="use" value="walk"> walk/run<br/>
+                <input type="checkbox" name="use" value="birding"> birding<br/>
+                <input type="checkbox" name="use" value="canoe"> enjoy scenery<br/>
+            </div>
+            <br/>
+            <b>Other</b><br/>
+            <input type="text" name="other" ></input>
+        </form>
+    </div>
   </body>
 </html>
