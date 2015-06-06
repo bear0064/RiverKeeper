@@ -32,32 +32,52 @@
   </head>
   <body>
       <form action="" class="main-form">
-          <input id="postal-code" type="text" name="postalcode"><br/>
-          <button type="button" onclick="lookupPostal();">
+          <input id="postal-code"
+              type="text"
+              name="postalcode"
+              onkeypress="">
+          </input>
+          <br/>
+          <button id="postal-lookup" type="button" onclick="lookupPostal();">
               Lookup postal code
           </button>
       </form>
     <div id="map"></div>
     <script>
+
     lat=46.51805180290592,  lng=-76.92626953125
-      var map = L.map('map').setView([46.52, -77], 7); // was [45.4214, -75.6919], 7);
+
+      // global variable storing map marker
       var marker = null;
+
+      // set up Topographic map
+      var map = L.map('map').setView([46.52, -77], 7);
+      // was [45.4214, -75.6919], 7); (Ottawa), now centred on water boundry
       L.esri.basemapLayer("Topographic").addTo(map);
+      // add water boundry overlay
       feature = L.esri.featureLayer("http://services3.arcgis.com/3A9PBYcAJK4G2Muz/arcgis/rest/services/Ottawa_Watershed_Boundaries/FeatureServer/0");
       feature.on('click', function(e) {
               var popLocation= e.latlng;
 
-  			  console.log(e.latlng);
               if (marker == null) {
                   marker = L.marker(popLocation).addTo(map);
-                  marker.bindPopup($("#map-form").html()).openPopup();
                 }
                 else {
                     marker.setLatLng(popLocation);
-                    marker.bindPopup($("#map-form").html()).openPopup();
                 }
+
+                marker.bindPopup($("#map-form").html()).openPopup();
           });
       feature.addTo(map);
+
+      // submit the postal code when the user presses enter
+      $('#postal-code').on("keyup keypress", function(e) {
+          var code = e.keyCode || e.which;
+          if (code  == 13) {
+            $('#postal-lookup').click();
+            return false;
+          }
+        });
     </script>
 
     <div id="map-form" style="display: none;">
