@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -66,7 +64,7 @@
       template.setContent(getTextContent);
 
       //create the feature layer (street trees of San Francisco)
-      var featureLayer = new FeatureLayer("http://http://services3.arcgis.com/3A9PBYcAJK4G2Muz/arcgis/rest/services/Ottawa_Watershed_Boundaries/FeatureServer/0",{
+      var featureLayer = new FeatureLayer("http://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Street_Trees/FeatureServer/0",{
         infoTemplate: template,
         outFields: ["*"]
       });
@@ -94,4 +92,3 @@
     <div id="mapDiv"></div>
   </body>
 </html>
-
