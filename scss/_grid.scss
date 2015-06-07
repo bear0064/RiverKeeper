@@ -1,0 +1,20 @@
+.container {
+	max-width: 1220px;
+	margin: 0 auto;
+}
+
+@media only screen and (min-width: $breakpoint-small) {
+
+}
+
+
+@media only screen and (min-width: $breakpoint-large) {
+        .col-2 {
+            @include equalSpaced(2, 0px, $breakpoint-large);
+            float: left;
+            width: 50%;
+            
+    
+        }
+}
+

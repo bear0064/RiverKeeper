@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="River Keeper Ottawa"/>
+<meta property="og:image" content="../img/ottawa-riverkeeper-logo.svg"/>
+<meta property="og:site_name" content="Be the voice for the Ottawa River!"/>
+<meta property="og:description" content="I care about keeping the Ottawa River swimmable, drinkable, and fishable! Click the link and in 5 minutes you will help advocate for its protection and improvement. You’ll also join me, and a community of others who love the river, and learn about great spots for fishing, boating, scuba diving, and other activities. What are you waiting for"/>
+
+    <title>River Keeper Community Map</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+
+
+
+    <!-- we encourage you to replace 'latest' with a hardcode version number (like '1.0.0-rc.7') in production applications -->
+
+
+</head>
+
+
+
+
+
+<body>
+
+    <div class="wrapper">
+
+
+        <header>
+            <nav><img id="logo" src="img/ottawa-riverkeeper-logo.svg">
+            </nav>
+        </header>
+
+        <section data-index="0" class="fullpage-background">
+            <div class="fullBackground"></div>
+            <div class="container">
+                <div class="background-overlay">
+                    <h1 id="catcher">How Do You Get <span id="wild">Wild?</span></h1>
+                    <a href="#formMap">
+                        <button class="submit" type="button">Take The Survey</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="breaker">
+            <div>
+                <p>The Ottawa River stays healthy and strong because of support from water enthusiasts like you. Be the voice of the Ottawa River to help keep our waters swimmable, fishable, and drinkable for years to come.</p>
+            </div>
+        </section>
+
+
+
+
+
+
+        <section data-index="1" id="formMap" class="col-container">
+
+            <div id="containerForm" class="col-2">
+
+
+
+                <h3 id="formTitle">Take the Survey</h3>
+
+
+                <form>
+                    <div class="group">
+
+                        <input class="formFun" type="text" name="firstname" id="firstname" placeholder="First Name" required/><span class="highlight"></span><span class="bar"></span>
+                    </div>
+
+                    <div class="group">
+
+                        <input class="formFun" type="text" name="lastname" id="lastname" placeholder="Last Name" required/><span class="highlight"></span><span class="bar"></span>
+                    </div>
+                    <div class="group">
+
+
+                        <input class="formFun" type="email" name="email" id="firstname" placeholder="Email Address" required /><span class="highlight"></span><span class="bar"></span>
+                    </div>
+
+                    <div class="group">
+                        <input class="formFun" type="text" name="postal" id="postal" placeholder="Postal Code*" /><span class="highlight"></span><span class="bar"></span>
+
+                        <div>
+                            <p id="optional">*optional</p>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <p id='formCatch'>Join Our Rec Water Community.</p>
+                    </div>
+
+                    <div>
+
+
+
+                        <input type="checkbox" name="join" id="join" />
+                    
+
+                        <p id="sub">subscribe me to your newsletter</p>
+                        
+    
+
+                    </div>
+
+                    <div>
+                        <button id="bottom" type="button">Submit Form</button>
+                    </div>
+
+                </form>
+
+
+
+            </div>
+
+
+            <div id="containerMap">
+                <div id="map">	<div data-role="modal" id="usage">
+		<h2>How do you use the river? Select your location(s) on the map.</h2>
+	</div></div>
+            </div>
+
+
+	<div data-role="modal" id="usage">
+		<h2>How do you use the river? Select your location(s) on the map.</h2>
+	</div>
+    
+
+
+
+
+
+
+        </section>
+
+
+
+
+
+
+
+        <div id="map-form" style="display: none;">
+
+
+            <form id="miniForm">
+                <big>
+                <p>
+                    Activies
+                </p>
+            </big>
+                <br/>
+                <div class="check-group">
+                    <input type="checkbox" name="use" value="swim"> swim
+                    <br/>
+                    <input type="checkbox" name="use" value="sail"> sail
+                    <br/>
+                    <input type="checkbox" name="use" value="paddle"> paddle
+                    <br/>
+                    <input type="checkbox" name="use" value="fish"> fish
+                    <br/>
+                    <input type="checkbox" name="use" value="motorboat"> motorboat
+                    <br/>
+                    <input type="checkbox" name="use" value="scuba"> scuba
+                    <br/>
+                    <input type="checkbox" name="use" value="explore"> explore/wade
+                    <br/>
+                </div>
+                <div class="check-group">
+                    <input type="checkbox" name="use" value="camping"> camping
+                    <br/>
+                    <input type="checkbox" name="use" value="rowing"> rowing
+                    <br/>
+                    <input type="checkbox" name="use" value="raft"> rafting
+                    <br/>
+                    <input type="checkbox" name="use" value="bike"> biking
+                    <br/>
+                    <input type="checkbox" name="use" value="walk"> walk/run
+                    <br/>
+                    <input type="checkbox" name="use" value="birding"> birding
+                    <br/>
+                    <input type="checkbox" name="use" value="canoe"> enjoy scenery
+                    <br/>
+                </div>
+                <br/>
+
+                <div class="group">
+                    <input class="otherFun" id="other" type="text" name="other" placeholder="Other">
+                    <span class="highlight"></span><span class="bar2"></span>
+                </div>
+                <div>
+                    <div id="clearMin">
+                        <button class="mini" id="clear" type="button">Clear</button>
+                    </div>
+                    <div id="submitMin">
+                        <button class="mini" id="submitMini" type="button">Done</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+        <footer>
+            
+            
+            <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+            
+                     <div class="tw-share-button">
+                <a href="http://twitter.com/?status=Be+the+voice+for+the+Ottawa+River!+Tell+@Ottriverkeeper+how+you+get+wet+&+wild,+and+join+others+who+love+the+river!+http://127.0.0.1:54566/RHoK/index.html"><img src="img/ottawa-riverkeeper-logo.svg" border="0" /></a>
+            </div>     
+            
+            <div class="fb-share-button" data-href="http://127.0.0.1:54566/RHoK/index.html" ></div>
+        
+   
+                
+        </footer>
+
+    </div>
+    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="http://cdn.jsdelivr.net/leaflet.esri/latest/esri-leaflet.js"></script>
+    <script src="js/jscript.js"></script>
+
+</body>
+
+</html>
