@@ -54,9 +54,6 @@
       </form>
     <div id="map"></div>
     <script>
-
-    lat=46.51805180290592,  lng=-76.92626953125
-
       // global variable storing map marker
       var marker = null;
 
@@ -68,6 +65,7 @@
       feature = L.esri.featureLayer("http://services3.arcgis.com/3A9PBYcAJK4G2Muz/arcgis/rest/services/Ottawa_Watershed_Boundaries/FeatureServer/0");
       feature.on('click', function(e) {
               var popLocation= e.latlng;
+              console.log(popLocation);
 
               if (marker == null) {
                   marker = L.marker(popLocation).addTo(map);
@@ -88,6 +86,56 @@
             return false;
           }
         });
+
+        function addRandomPopup(mark) {
+            var uses = [
+                "1.png", "2.png", "3.png"
+            ];
+            var numberUses = Math.floor(Math.random() * (uses.length - 1 )) + 1;
+            var usesString = "";
+            for (i = 0; i < numberUses; i++) {
+                var rnd = Math.floor(Math.random() * uses.length);
+                usesString += "<img src=\"img/" + uses[rnd] + "\"></img>";
+            }
+            mark.bindPopup("<div>"+usesString+"</div>");
+        }
+
+        function populatePoints() {
+            var codes = ["K1S", "K1X", "K2J", "K8A", "P0J"];
+
+            for (i = 0; i < codes.length; i++) {
+                code = codes[i];
+                $.ajax({url:"http://api.zippopotam.us/ca/" + code})
+                .then(function(place) {
+                    if (place == {}) {
+            			// couldn't look up code
+            		}
+            		else if (place.places.length > 0) {
+            			var location = place.places[0];
+            			var lat = location.latitude;
+            			var long = location.longitude;
+            			var m = L.marker([lat, long]).addTo(map);
+                        addRandomPopup(m);
+                    }
+                });
+            }
+
+            var points = [
+                [47.03, -77.03],
+                [46.5, -77.2],
+                [46.99, -75.564],
+                [46.98, -78.65]
+             ];
+
+            for (x = 0; x< points.length; x++) {
+                var point = points[x];
+
+                var m = L.marker(point).addTo(map);
+                addRandomPopup(m);
+            }
+        }
+
+        populatePoints();
     </script>
 
     <div id="map-form" style="display: none;">
