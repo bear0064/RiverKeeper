@@ -33,7 +33,8 @@ $( document ).ready(function() {
 
                 L.esri.basemapLayer("Topographic").addTo(map);
                 // add water boundry overlay
-                feature = L.esri.featureLayer("http://services3.arcgis.com/3A9PBYcAJK4G2Muz/arcgis/rest/services/Ottawa_Watershed_Boundaries/FeatureServer/0");
+                feature = L.esri.featureLayer({url: "http://services3.arcgis.com/3A9PBYcAJK4G2Muz/arcgis/rest/services/Ottawa_Watershed_Boundaries/FeatureServer/0"});
+                
                 feature.on('click', function (e) {
                     bigModal2();
                     var popLocation = e.latlng;
